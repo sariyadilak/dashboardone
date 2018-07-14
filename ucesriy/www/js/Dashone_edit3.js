@@ -1107,51 +1107,52 @@ function DetailChartOne(){
 
 //draw pie two
 function drawDetailtableTwo(){
-tabletwo = anychart.standalones.table(10,2 );
+tabletwo = anychart.standalones.table(11,2 );
 tabletwo.cellBorder(null);
 tabletwo.getCol(0).width('30%');
 tabletwo.getCol(1).width('70%');
-tabletwo.getRow(0).height('10%');
-tabletwo.getRow(1).height('10%');
-tabletwo.getRow(2).height('10%');
-tabletwo.getRow(3).height('10%');
-tabletwo.getRow(4).height('10%');
-tabletwo.getRow(5).height('10%');
-tabletwo.getRow(6).height('10%');
-tabletwo.getRow(7).height('10%');
-tabletwo.getRow(8).height('10%');
-tabletwo.getRow(9).height('10%');
+tabletwo.getRow(0).height('9%');
+tabletwo.getRow(1).height('9%');
+tabletwo.getRow(2).height('9%');
+tabletwo.getRow(3).height('9%');
+tabletwo.getRow(4).height('9%');
+tabletwo.getRow(5).height('9%');
+tabletwo.getRow(6).height('9%');
+tabletwo.getRow(7).height('9%');
+tabletwo.getRow(8).height('9%');
+tabletwo.getRow(9).height('9%');
+tabletwo.getRow(10).height('9%');
 
-
-
-tabletwo.getCell(0, 0).content('Area of site(A)')
-.fontSize(6);
-tabletwo.getCell(0, 1).content(Detaillinegaugeone());
-tabletwo.getCell(1, 1).content(Detaillinegaugetwo());
-tabletwo.getCell(2, 1).content(Detaillinegaugethree());
-tabletwo.getCell(3, 1).content(Detaillinegaugefour());
-tabletwo.getCell(4, 1).content(Detaillinegaugefive());
-tabletwo.getCell(5, 1).content(Detaillinegaugesix());
-tabletwo.getCell(6, 1).content(Detaillinegaugeseven());
-tabletwo.getCell(7, 1).content(Detaillinegaugeeight());
-tabletwo.getCell(8, 1).content(Detaillinegaugenine());
-tabletwo.getCell(3, 0).content('Area of site(B)')
-.fontSize(6);
-tabletwo.getCell(6, 0).content('Area of site(C)')
-.fontSize(6);
-tabletwo.getCell(1, 0).content('Distance from road(A)')
-.fontSize(6);
-tabletwo.getCell(4, 0).content('Distance from road(B)')
-.fontSize(6);
-tabletwo.getCell(7, 0).content('Distance from road(C)')
-.fontSize(6);
-tabletwo.getCell(2, 0).content('Distance from center(A)')
-.fontSize(6);
-tabletwo.getCell(5, 0).content('Distance from center(B)')
-.fontSize(6);
-tabletwo.getCell(8, 0).content('Distance from center(C)')
-.fontSize(6);
-tabletwo.getCell(9, 1).content(createBulletScale());
+tabletwo.getCell(0, 0).colSpan(2).content('Available site')
+.fontSize(8);
+tabletwo.getCell(1, 0).content('Area of site(A)')
+.fontSize(4);
+tabletwo.getCell(1, 1).content(Detaillinegaugeone());
+tabletwo.getCell(2, 1).content(Detaillinegaugetwo());
+tabletwo.getCell(3, 1).content(Detaillinegaugethree());
+tabletwo.getCell(4, 1).content(Detaillinegaugefour());
+tabletwo.getCell(5, 1).content(Detaillinegaugefive());
+tabletwo.getCell(6, 1).content(Detaillinegaugesix());
+tabletwo.getCell(7, 1).content(Detaillinegaugeseven());
+tabletwo.getCell(8, 1).content(Detaillinegaugeeight());
+tabletwo.getCell(9, 1).content(Detaillinegaugenine());
+tabletwo.getCell(4, 0).content('Area of site(B)')
+.fontSize(4);
+tabletwo.getCell(7, 0).content('Area of site(C)')
+.fontSize(4);
+tabletwo.getCell(2, 0).content('Distance from road(A)')
+.fontSize(4);
+tabletwo.getCell(5, 0).content('Distance from road(B)')
+.fontSize(4);
+tabletwo.getCell(8, 0).content('Distance from road(C)')
+.fontSize(4);
+tabletwo.getCell(3, 0).content('Distance from center(A)')
+.fontSize(4);
+tabletwo.getCell(6, 0).content('Distance from center(B)')
+.fontSize(4);
+tabletwo.getCell(9, 0).content('Distance from center(C)')
+.fontSize(4);
+tabletwo.getCell(10, 1).content(createBulletScale());
 
 
 tabletwo.draw();
