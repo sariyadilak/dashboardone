@@ -103,6 +103,8 @@ firestationlayer.setStyle(function (feature){
 			return firestaStyle;
 		}
 	});
+	
+mymap.fitBounds(e.target.getBounds());
 
 y = barchartfiresta.getSelectedPoints();
 highchartfiresta = y[0].Gn.categoryname;
@@ -560,7 +562,7 @@ function selectfireincFeature(e) {
 	console.log(clickmap);
 	x = barchart.getSelectedPoints();
 	highchart = x[0].Gn.categoryname;
-
+	mymap.fitBounds(e.target.getBounds());
 	
 	for (i = 0; i < fireincarray.length; i++) { 
 	
