@@ -1109,8 +1109,8 @@ function DetailChartOne(){
 function drawDetailtableTwo(){
 tabletwo = anychart.standalones.table(11,2 );
 tabletwo.cellBorder(null);
-tabletwo.getCol(0).width('30%');
-tabletwo.getCol(1).width('70%');
+tabletwo.getCol(0).width('40%');
+tabletwo.getCol(1).width('60%');
 tabletwo.getRow(0).height('9%');
 tabletwo.getRow(1).height('9%');
 tabletwo.getRow(2).height('9%');
@@ -1126,7 +1126,7 @@ tabletwo.getRow(10).height('9%');
 tabletwo.getCell(0, 0).colSpan(2).content('Available site')
 .fontSize(8);
 tabletwo.getCell(1, 0).content('Area of site(A)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(1, 1).content(Detaillinegaugeone());
 tabletwo.getCell(2, 1).content(Detaillinegaugetwo());
 tabletwo.getCell(3, 1).content(Detaillinegaugethree());
@@ -1137,21 +1137,21 @@ tabletwo.getCell(7, 1).content(Detaillinegaugeseven());
 tabletwo.getCell(8, 1).content(Detaillinegaugeeight());
 tabletwo.getCell(9, 1).content(Detaillinegaugenine());
 tabletwo.getCell(4, 0).content('Area of site(B)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(7, 0).content('Area of site(C)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(2, 0).content('Distance from road(A)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(5, 0).content('Distance from road(B)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(8, 0).content('Distance from road(C)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(3, 0).content('Distance from center(A)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(6, 0).content('Distance from center(B)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(9, 0).content('Distance from center(C)')
-.fontSize(4);
+.fontSize(6);
 tabletwo.getCell(10, 1).content(createBulletScale());
 
 
