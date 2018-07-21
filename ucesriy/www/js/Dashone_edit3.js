@@ -62,7 +62,19 @@ layer.setStyle({
 	weight: 1,
 	opacity: 1,
 	fillOpacity: 1
- });};	
+ });}
+ 
+  if (e.target.feature.properties.selected){
+var layer = e.target;
+
+layer.setStyle({
+	radius: 5,
+	fillColor: "#476b6b",
+	color: "#000000",
+	weight: 1,
+	opacity: 1,
+	fillOpacity: 1
+ });}
 
 
 
@@ -200,6 +212,10 @@ if (firestafireinc =[]){
 for (i = 0; i < firestationarray.length; i++) { 
 	firestafireinc.push([firestationarray[i][0],firestationarray[i][4]]);
 }}
+
+if (firestationlayer){
+		mymap.removeLayer(firestationlayer);
+	}
 
 if (boroughfireinclayer){
 		mymap.removeLayer(boroughfireinclayer);
@@ -823,6 +839,12 @@ if ( firestationlayer) { // check
 	mymap.removeLayer( firestationlayer); // remove the marker from the map
 
 	}
+if (boroughfireinclayer){
+		mymap.removeLayer(boroughfireinclayer);
+	}
+if (legend != undefined) {
+legend.remove();
+}
 	
 var boroughfireincjson = JSON.parse(boroughfireincdata);
 var features = []; 
@@ -1196,7 +1218,7 @@ function Detaillinegaugeone(){
                     value: sitea_areasite,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: ' #ff9933',
                     stroke: null
                 },
                 {
@@ -1237,7 +1259,7 @@ function Detaillinegaugetwo(){
                     value: sitea_road,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: ' #ff9933',
                     stroke: null
                 },
                 {
@@ -1278,7 +1300,7 @@ function Detaillinegaugethree(){
                     value: sitea_center,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: ' #ff9933',
                     stroke: null
                 },
                 {
@@ -1442,7 +1464,7 @@ function Detaillinegaugeseven(){
                     value: sitec_areasite,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: '#0066ff',
                     stroke: null
                 },
                 {
@@ -1483,7 +1505,7 @@ function Detaillinegaugeeight(){
                     value: sitec_road,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: '#0066ff',
                     stroke: null
                 },
                 {
@@ -1524,7 +1546,7 @@ function Detaillinegaugenine(){
                     value: sitec_center,
                     type: 'bar',
                     gap: 0.7,
-                    fill: '#64b5f6',
+                    fill: '#0066ff',
                     stroke: null
                 },
                 {
