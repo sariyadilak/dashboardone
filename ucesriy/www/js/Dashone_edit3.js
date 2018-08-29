@@ -1,5 +1,5 @@
 //add map
-	// load the map
+// load the map
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 		// load the tiles
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {maxZoom: 18,attribution: 'Map data &copy; <ahref="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +'Imagery © <a href="http://mapbox.com">Mapbox</a>',id: 'mapbox.streets'}).addTo(mymap);
@@ -11,10 +11,11 @@ var y;
 var highchart;
 var  layoutTable = null;
 
+//draw chart
 anychart.onDocumentReady(chartfiresta);
 
 
-	//adding interaction
+//Highlight feature on the map
 function highlightFeature(e) {
 var layer = e.target;
 
@@ -30,7 +31,7 @@ if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 }
 }
 
-	//adding interaction
+//Highlight fire station
 function highlightfirestaFeature(e) {
 var layer = e.target;
 
@@ -49,8 +50,7 @@ if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 }
 
 
-// var firestacoords;
-// var fireGroup; 
+//reset highlight for fire station 
 function resetfirestaHighlight(e) {
  if (!e.target.feature.properties.selected){
 var layer = e.target;
@@ -83,7 +83,7 @@ layer.setStyle({
 var clickfire;
 var seriesfirestaarray =[];
 var highchartfiresta;
-//click on map
+//click on map and highlight on chart and redraw the information on detail chart
 function selectfirestaFeature(e) {
 
 e.target.feature.properties.selected = !e.target.feature.properties.selected;	
@@ -118,9 +118,10 @@ firestationlayer.setStyle(function (feature){
 	
 mymap.fitBounds(e.target.getBounds());
 
+//highlight on main chart
 y = barchartfiresta.getSelectedPoints();
 highchartfiresta = y[0].Gn.categoryname;
-console.log(highchartfiresta);
+
 
 var i;
 	for (i = 0; i < firestafireinc.length; i++) { 
@@ -136,6 +137,7 @@ selectonchartfiresta();
 }
 }
 
+//highlight on feature on chart and highlight fire station on map
 function selectonchartfiresta(){
 var seriesfirestaarray = seriesfiresta.xe.FN;
 var i =seriesfirestaarray.indexOf(clickfire);
@@ -161,7 +163,7 @@ function firestadisplay (feature, latlng) {
 }	
 	
 	
-// fire station tooltip
+// add pop-up element for fire station on the map
 function onEachfirestaFeature(feature, layer) {
 FireSta = feature.properties.FireStat_1 ;
 Borough = feature.properties.BOROUGH ;
@@ -180,7 +182,7 @@ layer.bindTooltip(onpopup);
 
 
 
-//add fire station layer
+//add fire station layer on the map
 var firestationlayer;
 var firestationdata;
 var firestationjson;
@@ -213,6 +215,7 @@ for (i = 0; i < firestationarray.length; i++) {
 	firestafireinc.push([firestationarray[i][0],firestationarray[i][4]]);
 }}
 
+//remove the existing layer, when add layer again
 if (firestationlayer){
 		mymap.removeLayer(firestationlayer);
 	}
@@ -231,14 +234,15 @@ firestationlayer=L.geoJson(firestationjson,{pointToLayer: firestadisplay,onEachF
 firestationlayer.addTo(mymap);
 // change the map zoom so that all the data is shown
 mymap.fitBounds(firestationlayer.getBounds());
+//draw chart when adding fire station layer
 anychart.onDocumentReady(chartfiresta);
 }
 
-//chart for (fire station, population and borough)
+//chart for (fire station)
 function chartfiresta() {
 	if ( layoutTable != null)  layoutTable.container(null);
 
-
+//layout of dashboard
 layoutTable = anychart.standalones.table(2,1 );
 layoutTable.cellBorder(null);
 layoutTable.getCol(0).width('100%');
@@ -451,7 +455,7 @@ gauge = anychart.gauges.circular();
   return gauge
 }
 
-//click on chart fire station
+//get the fire station name when click on the chart
 var clickchartfiresta;
 function chartPointClickfiresta(e) {
     var index = e.point.getIndex();
@@ -500,7 +504,7 @@ function selectfirestaMapChart(){
 }
 }
 
-//adding fire station range pink color
+//fire incident color range on borough
 function getFireIncBoColor(d) {
 	return d >= 745 ? ' #990000' :
 			d >= 671 ? ' #cc0000' :
@@ -511,7 +515,7 @@ function getFireIncBoColor(d) {
 }
 
  
-//adding population borough color
+//using the color from the range define above
 function FireIncBostyle(feature) {
 	return {
 		fillColor: getFireIncBoColor(feature.properties.FireInc),
@@ -522,6 +526,7 @@ function FireIncBostyle(feature) {
 	};
 }
 
+//reset the highlight of fire incident borough layer
 function resetfireincboHighlight(e) {
 	if (!e.target.feature.properties.selected){
 boroughfireinclayer.resetStyle(e.target);
@@ -530,7 +535,7 @@ boroughfireinclayer.resetStyle(e.target);
 }
 
 
-//click on map
+//click on fire incident borough on the map
 function selectfireincFeature(e) {
 	
 	e.target.feature.properties.selected = !e.target.feature.properties.selected;
@@ -542,7 +547,7 @@ function selectfireincFeature(e) {
 		seriesfireinc.select([i]);
 
 
-	//select on map
+	//select borough on the map
 	boroughfireinclayer.setStyle(function (feature){
 	var i;
 		if (clickmap === feature.properties.NAME ){
@@ -576,10 +581,12 @@ function selectfireincFeature(e) {
 		
 	}
 	console.log(clickmap);
+	//select on the chart
 	x = barchart.getSelectedPoints();
 	highchart = x[0].Gn.categoryname;
 	mymap.fitBounds(e.target.getBounds());
 	
+	//filter data of fire incident each month to draw in the detail chart
 	for (i = 0; i < fireincarray.length; i++) { 
 	
 	if (highchart === fireincarray[i][2] ){
@@ -610,7 +617,7 @@ function selectfireincFeature(e) {
 	fireincmonth.push(['Dec',fireincarray[i][3]]);}
 		}
 	}
-	
+	//filter data for the available site to draw in the detail chart
 		for (i = 0; i < sitearray.length; i++) { 
 	
 	if (highchart === sitearray[i][2] ){
@@ -644,7 +651,7 @@ function selectfireincFeature(e) {
 	}
 	}
 	
-	//arrange data for chart two and three
+	//filter data of child and old age
 	if (highchart === 'Kingston upon Thames'){
 		dataCO = KingstonuponThamesCO;
 	}
@@ -754,16 +761,16 @@ function selectfireincFeature(e) {
 	anychart.onDocumentReady(chartfireinc);
 	selectonchartfireinc();
 
-    // mymap.fitBounds(e.target.getBounds());
 }
 
+//select data on the chart when click on the map
 function selectonchartfireinc(){
 	var seriesfireincarray=seriesfireinc.xe.FN;
 	var i =seriesfireincarray.indexOf(clickmap);
 		seriesfireinc.select([i]);
 }
 
-
+//create popup for each feature on the map
 function onEachfireincboFeature(feature, layer) {
 bo_name = feature.properties.NAME ;
 
@@ -962,12 +969,12 @@ var dataLU;
 var dataCO;
 var fireincmonth=[];
 var barchart;
-//chart for (fire station, population and borough)
+
 function chartfireinc() {
 	if ( layoutTable != null)  layoutTable.container(null);
 
 
-// Variables for this dashboard
+// layout for layer two dashboard
 var totalDataArray, detailCellName;
 var detailChart, detailPie;
 var selectedX = null;
@@ -998,7 +1005,7 @@ layoutTable.draw();
 
 
 
-//barchart
+//create main chart (mixture between bar chart and line chart)
 function mainChart() {
 
 var rawData = boroughfireinc;
@@ -1100,7 +1107,7 @@ return barchart
 
 }
 
-//detail chart one
+//use data to create detail chart one (fire incident per month)
 function DetailChartOne(){
 	
 	var data = anychart.data.set(fireincmonth);
@@ -1129,8 +1136,9 @@ function DetailChartOne(){
 	return chartone
 	}
 
-//draw pie two
+//use data to create detail chart two (available site)
 function drawDetailtableTwo(){
+//layout for detail chart two
 tabletwo = anychart.standalones.table(11,2 );
 tabletwo.cellBorder(null);
 tabletwo.getCol(0).width('40%');
@@ -1209,7 +1217,9 @@ axis.minorTicks(null);
 
 return axis
         }
+
 		
+//create bullet chart for detail chart two
 function Detaillinegaugeone(){
 
 
@@ -1583,7 +1593,7 @@ function Detaillinegaugenine(){
 
 
 
-//draw chart three
+//draw detail chart three (pie chart for child,old,working age)
 function drawDetailPieThree(){
 
 	piethree = anychart.pie(dataCO);
@@ -1630,7 +1640,7 @@ function selectfireincMap() {
 	
 	mymap.fitBounds(boroughfireinclayer.getBounds());
 	
-	
+	//filter data for fire incident per month (detail chart one)
 	for (i = 0; i < fireincarray.length; i++) { 
 	
 	if (clickchartfireinc === fireincarray[i][2] ){
@@ -1662,7 +1672,7 @@ function selectfireincMap() {
 		}
 	}
 	
-	
+	//filter data for available site
 	for (i = 0; i < sitearray.length; i++) { 
 	
 	if (clickchartfireinc === sitearray[i][2] ){
@@ -1697,7 +1707,7 @@ function selectfireincMap() {
 	}
 	
 	
-	//arrange data for chart two and three
+	//filter data for child and old age
 	if (clickchartfireinc === 'Kingston upon Thames'){
 		dataCO = KingstonuponThamesCO;
 	}
@@ -1871,6 +1881,7 @@ var sitec_road;
 var sitea_center; 
 var siteb_center; 
 var sitec_center; 
+//get data for the available site
 function getSite(){
 	clientone = new XMLHttpRequest();
 	clientone.open('GET','GeoJSON/Site_Fire.geojson');
